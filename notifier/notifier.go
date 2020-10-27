@@ -111,7 +111,7 @@ func (l *Notifier) FetchPosts() ([]post, error) {
 		str := s.Find(".w150:nth-child(7)").Text()
 		loc := re.FindIndex([]byte(str))
 		date := string(str[loc[0]:loc[1]])
-		parsedTime, err := time.Parse("2006-01-2 15:04:05", date)
+		parsedTime, err := time.ParseInLocation("2006-01-2 15:04:05", date, l.latestPostDate.Location())
 		if err != nil {
 			log.Print("Problem parsing time:", err)
 		}
